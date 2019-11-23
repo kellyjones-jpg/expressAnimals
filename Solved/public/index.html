@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Express() Animals</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous"
+    >
+
+    <link rel="stylesheet" href="css.css">
+
+    <!-- JQuery JS -->
+    <script
+        src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+        crossorigin="anonymous">
+    </script>
+
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">Home</a>
+        <a class="navbar-brand" href="/add">Add New Animal</a>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </nav>
+    
+    <div id="cardsDiv" class="row"></div>
+
+</body>
+
+<script>
+    
+    $.get(
+        "/api/data",
+        function(data) {
+            data.forEach(
+                animal => {
+                    $("#cardsDiv").append(
+                        `
+                        <div class="col-md-4">
+                            <div class="card" style="width: 100%;">
+                                <img src=${animal.pictureURL} class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">${animal.name}</h5>
+                                </div>
+                            </div>
+                        </div>
+                        `
+                    )
+                }
+            )
+        }
+    )
+
+</script>
+
+</html>
